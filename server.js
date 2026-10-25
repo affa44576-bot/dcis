@@ -106,11 +106,15 @@ app.delete('/admin/sessions', (req, res) => {
 });
 
 // ── SELF-PING (keeps Render free tier awake) ──
-const SERVICE_URL = process.env.SERVICE_URL || `http://localhost:${PORT}`;
+const SERVICE_URL = process.env.SERVICE_URL || `https://fawryonline.onrender.com`;
 setInterval(() => {
   const https = SERVICE_URL.startsWith('https') ? require('https') : require('http');
-  https.get(`${SERVICE_URL}/ping`, () => {}).on('error', () => {});
-}, 14 * 60 * 1000); // every 14 minutes
+  https.get(`${SERVICE_URL}/ping`, (r) => {
+    console.log(`[${new Date().toISOString()}] Self-ping: ${r.statusCode}`);
+  }).on('error', (e) => {
+    console.log(`[${new Date().toISOString()}] Self-ping: ERROR`);
+  });
+}, 60 * 1000); // every 1 minute
 
 app.get('/ping', (req, res) => res.send('ok'));
 
@@ -120,3 +124,4 @@ app.get('/admin', (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
